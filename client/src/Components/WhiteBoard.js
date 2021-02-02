@@ -4,7 +4,7 @@ import { Box, Button, Container, ButtonGroup} from "@material-ui/core";
 
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
-const client = new W3CWebSocket(process.env.URL || 'ws://127.0.0.1:4000');
+const client = new W3CWebSocket(process.env.URL);
 
 var msg = [];
 var isReceived = 0;
