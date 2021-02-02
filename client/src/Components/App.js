@@ -7,8 +7,7 @@ import { Box, Grid, Button, ButtonGroup} from "@material-ui/core";
 import VideoCanvas from "./VideoCanvas";
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
-const client = new W3CWebSocket('ws://127.0.0.1:4000');
-
+const client = new W3CWebSocket(process.env.URL || 'ws://127.0.0.1:4000');
 
 class App extends React.Component {
   constructor() {
