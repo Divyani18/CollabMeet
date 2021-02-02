@@ -7,7 +7,7 @@ import { Box, Grid, Button, ButtonGroup} from "@material-ui/core";
 import VideoCanvas from "./VideoCanvas";
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
-const client = new W3CWebSocket(process.env.URL);
+const client = new W3CWebSocket("ws://127.0.0.1:4000");
 
 class App extends React.Component {
   constructor() {
@@ -80,7 +80,7 @@ class App extends React.Component {
     return (
       <div>
         <Grid>
-          <NavBar />
+          <NavBar /> 
         </Grid>
         
           <Grid container>
@@ -99,10 +99,10 @@ class App extends React.Component {
               </ButtonGroup>
             </Box>
 
-          </Grid>
+       </Grid>*/}
 
-          <Grid container>
-            <Grid item xs={12} md={8} py={2} style={{marginBottom: "50px"}}>
+         <Grid container>
+            <Grid item xs={12} md={8} py={2} style={{marginBottom: "50px"}}> 
               <WhiteBoard callId={this.state.callId} callEnded={this.state.callEnded} />
             </Grid>
     

@@ -3,7 +3,7 @@ import { Box, Button, ButtonGroup, Grid} from "@material-ui/core";
 
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
-const signaling = new W3CWebSocket(process.env.URL);
+const signaling = new W3CWebSocket("ws://127.0.0.1:4000");
 
 const constraints = {audio: true, video: true};
 

@@ -1,17 +1,14 @@
 import React from "react";
-import Sketch from "react-p5";
+import p5 from "p5"
 import { Box, Button, Container, ButtonGroup} from "@material-ui/core";
 
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
-const client = new W3CWebSocket(process.env.URL);
+const client = new W3CWebSocket("ws://127.0.0.1:4000");
 
 var msg = [];
 var isReceived = 0;
 var verified = 0;
-var sketchWidth;
-var sketchHeight;
-
 
 class WhiteBoard extends React.Component {
     constructor(props) {
@@ -21,6 +18,8 @@ class WhiteBoard extends React.Component {
             data: "",
             callId: "",
         }
+
+        this.myRef = React.createRef();
     }
 
     joinedCall(id) {
@@ -31,33 +30,48 @@ class WhiteBoard extends React.Component {
         client.close(1000, () => {
           console.log("Call has been ended."); 
         })
-      }
+    }
 
-    render() {
+    Sketch = (p) => {
+
+            p.setup = () => {
+                var sketchWidth;
+                var sketchHeight;
         
-        const setup = (p5, canvasParentRef) => {
-            sketchWidth = document.getElementById("board").offsetWidth;
-            sketchHeight=400;
-            p5.createCanvas(sketchWidth, sketchHeight).parent(canvasParentRef);
-            p5.background(255,255,255);
-        }
-
-        const mouseDragged = (p5) => {
-
-            if(verified) {
-                console.log("Sending..."+ p5.mouseX + ", " + p5.mouseY);
-
-                var data = {
-                    x: p5.mouseX,
-                    y: p5.mouseY,
-                    type: "coordinates",
-                
-                }
-
-                client.send(JSON.stringify(data));
+                sketchWidth = document.getElementById("board").offsetWidth;
+                sketchHeight=400;
+                p.createCanvas(sketchWidth, sketchHeight);
+                p.background(255,255,255);
             }
-            
+        
+   
+        p.draw = () => {
+            if(verified) {
+                p.noStroke();
+                p.fill(0,0,255);
+                
+                if(p.mouseIsPressed)
+                {
+                    p.ellipse(p.mouseX,p.mouseY,5,5);
+                    this.mouseDragged(p);
+                    
+                }    
+    
+                if(isReceived) {
+    
+                    msg.map((message) => {
+                        return(
+                            p.ellipse(message.x,message.y,5,5));            
+                    })
+                    
+                }
+            }
         }
+     }
+   
+
+    componentDidMount() {
+        this.myP5 = new p5(this.Sketch, this.myRef.current);
 
         client.onmessage = (message) => {
             const dataFromServer = JSON.parse(message.data);
@@ -81,31 +95,27 @@ class WhiteBoard extends React.Component {
             }
         }
 
-        const draw = (p5) => {
+    }
 
-            if(verified) {
-                p5.noStroke();
-                p5.fill(0,0,255);
-                
-                if(p5.mouseIsPressed)
-                {
-                    p5.ellipse(p5.mouseX,p5.mouseY,5,5);
-                    mouseDragged(p5);
-                    
-                }    
+    mouseDragged = (p5) => {
 
-                if(isReceived) {
+        if(verified) {
+            console.log("Sending..."+ p5.mouseX + ", " + p5.mouseY);
 
-                    msg.map((message) => {
-                        return(
-                            p5.ellipse(message.x,message.y,5,5));            
-                    })
-                    
-                }
+            var data = {
+                x: p5.mouseX,
+                y: p5.mouseY,
+                type: "coordinates",
+            
             }
-                
-        }
 
+            client.send(JSON.stringify(data));
+        }
+        
+    }
+
+    render() {
+        
         return (
 
             <Container>
@@ -123,9 +133,10 @@ class WhiteBoard extends React.Component {
                     </Box>
                 </Box>
             
-                <Box id="board" >
-                    <Sketch setup={setup} draw={draw} />
+                <Box ref={this.myRef} id="board" >
+
                 </Box>
+                
             </Container>
 
         );

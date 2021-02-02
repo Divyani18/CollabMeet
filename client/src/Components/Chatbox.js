@@ -3,9 +3,9 @@ import { Box, Container, Card, Avatar, Typography, ButtonGroup, Button} from "@m
 import orange from '@material-ui/core/colors/orange';
 import red from "@material-ui/core/colors/red";
 import TextField from '@material-ui/core/TextField';
-import {w3cwebsocket as W3CWebSocket} from "websocket"
+import {w3cwebsocket as W3CWebSocket} from "websocket";
 
-const client = new W3CWebSocket(process.env.URL);
+const client = new W3CWebSocket("ws://127.0.0.1:4000")
 
 var verified = 0;
 
