@@ -5,7 +5,7 @@ import red from "@material-ui/core/colors/red";
 import TextField from '@material-ui/core/TextField';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 
-const client = new W3CWebSocket("ws://127.0.0.1:4000")
+const client = new W3CWebSocket(process.env.REACT_APP_URL)
 
 var verified = 0;
 
