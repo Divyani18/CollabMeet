@@ -99,7 +99,7 @@ class App extends React.Component {
               </ButtonGroup>
             </Box>
 
-       </Grid>*/}
+          </Grid>
 
          <Grid container>
             <Grid item xs={12} md={8} py={2} style={{marginBottom: "50px"}}> 
