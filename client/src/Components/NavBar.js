@@ -1,7 +1,17 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import { Box, Typography, Button, IconButton, useMediaQuery, useTheme, Menu, MenuItem} from "@material-ui/core";
-import yellow from '@material-ui/core/colors/yellow';
+import cyan from '@material-ui/core/colors/cyan';
 import MenuIcon from '@material-ui/icons/Menu';
+import About from "./About.js";
+import HowItWorks from "./HowItWorks.js"
+import logo from '../logo.png'
 
 function NavBar() {
 
@@ -20,42 +30,56 @@ function NavBar() {
     };
     
     return (
-      
-        <Box display="flex" flexDirection="row" bgcolor="rgba(0,0,0,0.8)" color={yellow[900]} p={2}>
+      <Router>
+        <Box display="flex" flexDirection="row" bgcolor="rgba(0,0,0,0.8)" color={"white"} p={2}>
+
+            <Box display="flex" flexDirection="row" alignItems="center">
+              <img src={logo} alt="CollabMeet" style={{height: "50px", width: "50px"}}></img>
+            </Box>
 
             <Box display="flex" flexDirection="row" alignItems="center">
               <Typography>CollabMeet</Typography>
             </Box>
 
-            {isMatch? 
-            <Box flexGrow={2} display="flex" flexDirection="row" justifyContent="flex-end">
-              <div>
-                
-                <IconButton color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                  <MenuIcon/>
-                </IconButton>
+                {isMatch? 
+                  <Box flexGrow={2} display="flex" flexDirection="row" justifyContent="flex-end">
+                    <div>
+                      
+                      <IconButton color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                        <MenuIcon/>
+                      </IconButton>
 
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}>
-                  
-                  <MenuItem onClick={handleClose}>About</MenuItem>
-                  <MenuItem onClick={handleClose}>Get Started</MenuItem>
+                      <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}>
+                        
+                        <MenuItem onClick={handleClose}><Link to="/about">About</Link></MenuItem>
+                        <MenuItem onClick={handleClose}><Link to="/howitworks">How it works?</Link></MenuItem>
 
-                </Menu>
-              </div>
+                      </Menu>
+                    </div>
 
-            </Box> :
+                  </Box> :
 
-            <Box flexGrow={2} display="flex" flexDirection="row" justifyContent="flex-end">
-              <Button color="inherit">About</Button>
-              <Button color="inherit">Get Started</Button>
-            </Box>}
+                  <Box flexGrow={2} display="flex" flexDirection="row" justifyContent="flex-end">
+                    <Button color="inherit" ><Link to="/about">About</Link></Button>
+                    <Button color="inherit"><Link to="/howitworks">How it works?</Link></Button>
+                  </Box>} 
         
-        </Box>)
+        </Box>
+
+                <Switch>
+                    <Route path="/about">
+                      <About />
+                    </Route>
+                    <Route path="/howitworks">
+                      <HowItWorks />
+                    </Route>
+                </Switch>
+      </Router>)
 
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Container, Card, Avatar, Typography, ButtonGroup, Button} from "@material-ui/core";
 import orange from '@material-ui/core/colors/orange';
 import red from "@material-ui/core/colors/red";
+import cyan from "@material-ui/core/colors/cyan";
 import TextField from '@material-ui/core/TextField';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 
@@ -114,7 +115,7 @@ class Chatbox extends React.Component {
                 </Box>
                 
                 <Box display="flex" flexDirection="column" bgcolor={orange[50]}>
-                    <Box flexGrow={1} py={0.2} px={1} bgcolor="rgb(0,0,0)" color="green"><h4>ChatBox</h4></Box>
+                    <Box flexGrow={1} py={0.2} px={1} bgcolor="rgb(0,0,0)" color={cyan['A200']}><h4>ChatBox</h4></Box>
                     <div style={{ width: "100%", height: "250px", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflow: "auto"}}>
                         
                         {this.state.messages.map(message => 

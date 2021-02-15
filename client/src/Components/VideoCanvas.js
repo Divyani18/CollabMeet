@@ -53,7 +53,7 @@ class VideoCanvas extends React.Component {
 
     componentDidMount() {
 
-      // Send any ice candidatCheck these out:es to the other peer.
+      // Send any ice candidates to the other peer.
       pc.onicecandidate = ({candidate}) => {
         console.log(JSON.stringify({candidate}));
         console.log("i'm a candidate");

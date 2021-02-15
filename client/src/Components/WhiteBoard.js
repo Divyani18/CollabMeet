@@ -1,6 +1,7 @@
 import React from "react";
 import p5 from "p5"
 import { Box, Button, Container, ButtonGroup} from "@material-ui/core";
+import cyan from '@material-ui/core/colors/cyan';
 
 import {w3cwebsocket as W3CWebSocket} from "websocket"
 
@@ -121,9 +122,9 @@ class WhiteBoard extends React.Component {
             <Container>
                 {this.props.callEnded ? this.endCall() : console.log("On call")}
 
-                <Box display="flex" flexDirection="row" bgcolor="rgb(0,0,0)" color="green">
-                    <Box flexGrow={2}>
-                        <p>WhiteBoard</p>
+                <Box display="flex" flexDirection="row" bgcolor="rgb(0,0,0)" color={cyan['A200']}>
+                    <Box flexGrow={2} px={1}>
+                        <h4>WhiteBoard</h4>
                     </Box>
 
                     <Box display="flex" flexGrow={0.1} styles={{justifyContent: "flex-end"}}>
