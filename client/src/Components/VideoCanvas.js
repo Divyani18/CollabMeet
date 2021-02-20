@@ -257,8 +257,7 @@ class VideoCanvas extends React.Component {
               
                 <Grid container style={{justifyContent: "space-around"}}>
                   <Grid item style={{flexWrap: "wrap", margin: "20px", backgroundColor: "rgb(0,0,0)", height: "250px", width: "250px"}}>
-                    <video id="localVideo" autoPlay style={{height: "200px", width: "250px"}}></video>
-                    <audio autoplay></audio> 
+                    <video id="localVideo" autoPlay style={{height: "200px", width: "250px"}}></video>                     
                   </Grid>
                   
                   <Grid item style={{flexWrap: "wrap", margin: "20px", backgroundColor: "rgb(0,0,0)", height: "250px", width: "250px"}}>
