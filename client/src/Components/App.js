@@ -90,7 +90,7 @@ class App extends React.Component {
 
               </ButtonGroup>
 
-              <input placeholder="Enter meeting code..."  style={{height: "37px", width: "235px"}} onChange={this.enteredText} value={this.state.callId} />
+              <input placeholder="Enter meeting code..."  style={{height: "37px", width: "230px"}} onChange={this.enteredText} value={this.state.callId} />
 
               <ButtonGroup  color="secondary" aria-label="outlined secondary button group">
                 <Button onClick={this.joinCall}>Join</Button>
