@@ -261,7 +261,7 @@ class VideoCanvas extends React.Component {
                   </Grid>
                   
                   <Grid item style={{flexWrap: "wrap", margin: "20px", backgroundColor: "rgb(0,0,0)", height: "250px", width: "250px"}}>
-                    <video className="remoteVideo" autoPlay muted style={{height: "200px", width: "250px"}}></video>
+                    <video className="remoteVideo" autoPlay style={{height: "200px", width: "250px"}}></video>
                     <audio autoplay></audio> 
                   </Grid> 
                 </Grid>  
