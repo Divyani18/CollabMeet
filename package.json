@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node index.js",
+    "client": "npm start --prefix client",
+    "build": "npm run build --prefix client"
   },
   "author": "Divyani",
   "license": "ISC",
